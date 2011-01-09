@@ -31,7 +31,12 @@ __END__
 
 =head1 SYNOPSIS
 
-    middleware 'AlternateRoot', root => '/foo';
+    builder {
+        enable 'Plack::Middleware::AlternateRoot', root => '/foo', strict => 1;
+        mount '/bar' => $app;
+    }
+
+    GET "http://myapp.com/foo/bar" --> response from $app
 
 =head1 DESCRIPTION
 
